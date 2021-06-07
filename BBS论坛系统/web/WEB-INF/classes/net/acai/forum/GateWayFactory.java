@@ -1,0 +1,61 @@
+package net.acai.forum;
+/**
+ * Title:        清清网络
+ * Description:
+ * Copyright:    Copyright (c) 2002
+ * Company:      www.SuperSpace.com
+ * @author:       SuperSpace
+ * @version 1.0
+ */
+import net.acai.database.*;
+import net.acai.forum.GateWayNotFoundException;
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.servlet.http.*;
+import net.acai.util.*;
+public class GateWayFactory{
+	public static Vector getGateWays() throws GateWayNotFoundException{
+		try{
+			DBConnect dbc=new DBConnect("select * from bbs.class order by id");
+			ResultSet rs=dbc.executeQuery();
+			Vector gateWayVector=new Vector();
+			int gateWayID;
+			String gateWayName;
+			GateWay gateWay;
+			while(rs.next()){
+				gateWayID=rs.getInt(1);
+				gateWayName=rs.getString(2);
+				gateWay=new GateWay(gateWayID,gateWayName);
+				gateWayVector.add(gateWay);
+			}
+			dbc.close();
+			return gateWayVector;
+		}
+		catch(Exception e){
+			throw new GateWayNotFoundException();
+		}
+		
+	}
+	public static GateWay getGateWay(HttpServletRequest request) throws Exception{
+		int ID;	
+		try{
+			ID=ParamUtil.getInt(request,"id");
+		}
+		catch(Exception e){
+			throw new Exception("请您选择您要排序的分类的ID");
+		}
+		DBConnect dbc=new DBConnect();
+		String sql="select id,class from bbs.class where id="+ID;
+		ResultSet rs=dbc.executeQuery(sql);
+		if(!rs.next())
+		throw new Exception("没有找到相应的论坛分类。");
+		//rs.next();
+		GateWay gateWay=new GateWay(rs.getInt(1),rs.getString(2));
+		dbc.close();
+		return gateWay;
+	}
+}
+
+				
+				
+			

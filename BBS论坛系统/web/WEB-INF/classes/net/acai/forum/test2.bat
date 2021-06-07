@@ -1,0 +1,1 @@
+java -classpath %classpath%E:\Apache\htdocs\ujbb\WEB-INF\classes; ForumPropertiesManager

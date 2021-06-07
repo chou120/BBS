@@ -1,0 +1,25 @@
+<%
+long endTime=(new Date()).getTime();
+%>
+<div align=center>
+<table><tr><td height=2></td></tr></table>
+<img src="pic/ad1.gif">
+<a href="ftp://lzb:lzb@222.28.43.206:2000/" target="_blank" title="<%=net.ds.toGBK("欢迎访问FTP站点，有大量资源供应，有特殊需求的请联系下面的方式,我将提供特殊免费帐户:-)")%>"><img src="pic/ad.gif" border=0></a>
+<br>
+<%=ads2%><%=copyRight%><%=version%>
+<table align=center width=174>
+    <tbody>
+      <tr> 
+        <td><img border=0 src="pic/biaoshi.gif"></td>
+		<td>
+		<a href="mailto:lzb_box@163.com">Mail:lzb_box@163.com</a>
+		Tel:010-62349606<br>
+		QQ:39717167 
+		</td>
+      </tr>
+	  <tr><td colspan=2 align=center>
+		<font color="#FF9900"><%=net.ds.toGBK("页面刷新时间:")%><%=(endTime-startTime)%>ms
+	  </td></tr>
+    </tbody>
+  </table>
+</div></body></html>
